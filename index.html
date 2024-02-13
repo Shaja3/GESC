@@ -239,13 +239,53 @@ color: #000000;
 }
 
   
+table {
+    margin: 40px auto 0; /* هذا يجعل الجدول يتوسط الصفحة أفقيًا ويضيف هامشًا علويًا بحجم 20 بكسل */
+    text-align: center;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th, td {
+    padding: 10px;
+    font-weight: bold; /* تطبيق الخط العريض */
+    border: 1px solid #000;
+}
+
+#STTotal, #SPTotal, #midTermTotal, #finalTotal, #SCTotal, #APDTotal {
+  font-weight: bold; /* تطبيق الخط العريض */
+    background-color: #ffffff;
+}
+
+#overallTotal {
+    background-color: #e9e9e9;
+    color: rgb(32, 167, 14); /* تعيين اللون الأحمر للنص */
+    font-weight: bold; /* تطبيق الخط العريض */
+    font-size: larger; /* جعل حجم النص أكبر قليلاً */
+}
+
+
+
+@keyframes balloon {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.balloon-animation {
+    animation: balloon 1s infinite;
+}
+
+
+
+
  </style>
 </head>
 <body>
 
     
 
-  
+
     <div class="link-container">
       <a href="https://t.me/+Yyrmw5KeX8Y1Yjlk" target="_blank">
         <span>General English SC مجموعة</span>
@@ -338,32 +378,56 @@ color: #000000;
    </form>
 
    <form>
-    <h2>المشاركة/الحضور/المواظبة (15%)</h2>
-    <label for="test17">المشاركة/الحضور/المواظبة - المستوى الأول (من 15 درجة)</label>
+    <h2>المشاركة والحضور والمواظبة (15%)</h2>
+    <label for="test17">المشاركة والحضور والمواظبة - المستوى الأول (من 15 درجة)</label>
     <input type="number" id="test17" name="test17" min="0" max="15" required>
-    <label for="test18">المشاركة/الحضور/المواظبة -  المستوى الثاني (من 15 درجة)</label>
+    <label for="test18">المشاركة والحضور والمواظبة -  المستوى الثاني (من 15 درجة)</label>
     <input type="number" id="test18" name="test18" min="0" max="15" required>
     <button type="button" onclick="calculateAttParDis()">أحسب</button>
     <div id="result6"></div>
    </form>
 
-   <form>
-    <h2>إجمالي درجات البرنامج</h2>
-    <label for="test19">إجمالي أختبارات التحدث (من 10 درجات)</label>
-    <input type="number" id="test19" name="test19" min="0" max="10" required>
-    <label for="test20">إجمالي مشاريع التحدث (من 30 درجة)</label>
-    <input type="number" id="test20" name="test20" min="0" max="30" required>
-    <label for="test21">إجمالي أختبار النصفي (من 10 درجات)</label>
-    <input type="number" id="test21" name="test21" min="0" max="10" required>
-    <label for="test22">إجمالي أختبار النهائي (من 10 درجات)</label>
-    <input type="number" id="test22" name="test22" min="0" max="10" required>
-    <label for="test23">إجمالي تمارين سمارت كلاس (من 25 درجة)</label>
-    <input type="number" id="test23" name="test23" min="0" max="25" required>
-    <label for="test24">إجمالي المشاركة/الحضور/المواظبة (من 15 درجة)</label>
-    <input type="number" id="test24" name="test24" min="0" max="15" required>
-    <button type="button" onclick="calculateTotal()">أحسب الدرجة النهائية</button>
-    <div id="result7"></div>
-   </form>
+   <table>
+    <tr>
+        <th>التقسيم</th>
+        <th>الدرجة</th>
+    </tr>
+
+    <tr>
+      <td>أختبارات التحدث</td>
+      <td id="STTotal"></td>
+  </tr>
+
+  <tr>
+    <td>مشاريع التحدث</td>
+    <td id="SPTotal"></td>
+</tr>
+
+    <tr>
+        <td>الأختبار النصفي</td>
+        <td id="midTermTotal"></td>
+    </tr>
+    <tr>
+        <td>الأختبار النهائي</td>
+        <td id="finalTotal"></td>
+    </tr>
+
+    <tr>
+      <td>تمارين سمارت كلاس</td>
+      <td id="SCTotal"></td>
+  </tr>
+
+  <tr>
+    <td>المشاركة والحضور والمواظبة</td>
+    <td id="APDTotal"></td>
+</tr>
+    <tr>
+        <td>الدرجة النهائية</td>
+        <td id="overallTotal"></td>
+    </tr>
+</table>
+
+
 
 
  </main>
@@ -415,7 +479,8 @@ function calculateSpeaking() {
   var percentage = (total / 60) * 10;
 var percentageString = percentage.toFixed(2); // تحويل النتيجة إلى نص وتحديد عدد الأرقام العشرية المطلوبة
 document.getElementById("result1").innerHTML = "الدرجة الكلية (أختبارات التحدث): " + percentageString + "/10.00"; // عرض النتيجة كنص
-}
+document.getElementById("STTotal").innerHTML = percentage.toFixed(2);
+    calculateOverallTotal();  }
 
 
   function calculateProjects() {
@@ -464,7 +529,9 @@ document.getElementById("result1").innerHTML = "الدرجة الكلية (أخ�
     // Calculate the percentage and display the result
     var percentage = (total / 120) * 30;
     document.getElementById("result2").innerHTML = "الدرجة الكلية (مشاريع التحدث): " + percentage.toFixed(2) + "/30.00";
-  }
+    document.getElementById("SPTotal").innerHTML = percentage.toFixed(2);
+    calculateOverallTotal();  }
+  
 
 
   function calculateMidTerm() {
@@ -488,9 +555,10 @@ document.getElementById("result1").innerHTML = "الدرجة الكلية (أخ�
     // Calculate the percentage and display the result
     var percentage = (total / 30) * 10;
     document.getElementById("result3").innerHTML = "الدرجة الكلية (أختبار النصفي): " + percentage.toFixed(2) + "/10.00";
-  }
+    document.getElementById("midTermTotal").innerHTML = percentage.toFixed(2);
+    calculateOverallTotal();  }
 
-  function calculateFinal() {
+    function calculateFinal() {
     var test14 = parseFloat(document.getElementById("test14").value);
 
     // Check if input value is greater than 30
@@ -511,7 +579,8 @@ document.getElementById("result1").innerHTML = "الدرجة الكلية (أخ�
     // Calculate the percentage and display the result
     var percentage = (total / 30) * 10;
     document.getElementById("result4").innerHTML = "الدرجة الكلية (أختبار النهائي): " + percentage.toFixed(2) + "/10.00";
-  }
+    document.getElementById("finalTotal").innerHTML = percentage.toFixed(2);
+    calculateOverallTotal();  }
 
   function calculateSmartClass() {
    var test15 = parseFloat(document.getElementById("test15").value);
@@ -540,7 +609,8 @@ document.getElementById("result1").innerHTML = "الدرجة الكلية (أخ�
     // Calculate the percentage and display the result
     var percentage = (total / 20) * 25;
     document.getElementById("result5").innerHTML = "الدرجة الكلية (سمارت كلاس): " + percentage.toFixed(2) + "/25.00";
-  }
+    document.getElementById("SCTotal").innerHTML = percentage.toFixed(2);
+    calculateOverallTotal();  }
 
 
   function calculateAttParDis() {
@@ -549,11 +619,11 @@ document.getElementById("result1").innerHTML = "الدرجة الكلية (أخ�
 
     // Check if input value is greater than 15
     if (test17 > 15) {
-      alert("درجة (المشاركة/الحضور/المواظبة - المستوى الأول) تجاوزت الحد الأقصى للدرجة");
+      alert("درجة (المشاركة والحضور والمواظبة - المستوى الأول) تجاوزت الحد الأقصى للدرجة");
       test17 = NaN;
     }
     if (test18 > 15) {
-      alert("درجة (المشاركة/الحضور/المواظبة - المستوى الثاني) تجاوزت الحد الأقصى للدرجة");
+      alert("درجة (المشاركة والحضور والمواظبة - المستوى الثاني) تجاوزت الحد الأقصى للدرجة");
       test18 = NaN;
     }
 
@@ -568,59 +638,71 @@ document.getElementById("result1").innerHTML = "الدرجة الكلية (أخ�
 
     // Calculate the percentage and display the result
     var percentage = (total / 30) * 15;
-    document.getElementById("result6").innerHTML = "الدرجة الكلية (المشاركة/الحضور/المواظبة): " + percentage.toFixed(2) + "/15.00";
-  }
+    document.getElementById("result6").innerHTML = "الدرجة الكلية (المشاركة والحضور والمواظبة): " + percentage.toFixed(2) + "/15.00";
+    document.getElementById("APDTotal").innerHTML = percentage.toFixed(2);
+    calculateOverallTotal();  }
 
-  function calculateTotal() {
-   var test19 = parseFloat(document.getElementById("test19").value);
-   var test20 = parseFloat(document.getElementById("test20").value);
-   var test21 = parseFloat(document.getElementById("test21").value);
-   var test22 = parseFloat(document.getElementById("test22").value);
-   var test23 = parseFloat(document.getElementById("test23").value);
-   var test24 = parseFloat(document.getElementById("test24").value);
-   
-    // Check if input value is greater than ...
-    if (test19 > 10) {
-      alert("درجة أختبارات التحدث تجاوزت الحد الأقصى للدرجة");
-      test19 = NaN;
-    }
-    if (test20 > 30) {
-      alert("درجة مشاريع التحدث تجاوزت الحد الأقصى للدرجة");
-      test20 = NaN;
-    }
-    if (test21 > 10) {
-      alert("درجة أختبار النصفي تجاوزت الحد الأقصى للدرجة");
-      test21 = NaN;
-    }
-    if (test22 > 10) {
-      alert("درجة أختبار النهائي تجاوزت الحد الأقصى للدرجة");
-      test22 = NaN;
-    }
-    if (test23 > 25) {
-      alert("درجة تمارين سمارت كلاس تجاوزت الحد الأقصى للدرجة");
-      test23 = NaN;
-    }
-    if (test24 > 15) {
-      alert("درجة المشاركة/الحضور/المواظبة تجاوزت الحد الأقصى للدرجة");
-      test24 = NaN;
-    }
+    function calculateOverallTotal() {
+    var STTotal = parseFloat(document.getElementById("STTotal").innerHTML);
+    var SPTotal = parseFloat(document.getElementById("SPTotal").innerHTML);
+    var midTermTotal = parseFloat(document.getElementById("midTermTotal").innerHTML);
+    var finalTotal = parseFloat(document.getElementById("finalTotal").innerHTML);
+    var SCTotal = parseFloat(document.getElementById("SCTotal").innerHTML);
+    var APDTotal = parseFloat(document.getElementById("APDTotal").innerHTML);
 
-    // Calculate the total score
-    var total = test19 + test20 + test21 + test22 + test23 + test24;
+    var overallTotal = Math.round(STTotal + SPTotal + midTermTotal + finalTotal + SCTotal + APDTotal);
+    document.getElementById("overallTotal").innerHTML = overallTotal;
 
-    // Check if total score is greater than 100
-    if (total > 100) {
-      alert("الدرجة النهائية بالبرنامج تجاوزت الحد الأقصى المسموح به");
-      total = NaN;
-    }
+    var overallTotal = Math.round(STTotal + SPTotal + midTermTotal + finalTotal + SCTotal + APDTotal);
+document.getElementById("overallTotal").innerHTML = overallTotal;
 
-    // Calculate the percentage and display the result
-    var percentage = (total / 100) * 100;
-    document.getElementById("result7").innerHTML = "الدرجة النهائية بالبرنامج: " + percentage.toFixed(2) + "/100.00";
+if (overallTotal >= 70) {
+    document.getElementById("overallTotal").style.color = "rgb(32, 167, 14)"; // تعيين اللون الأخضر للنص
+} else {
+    document.getElementById("overallTotal").style.color = "red"; // تعيين اللون الأحمر للنص
 }
 
 
+    var message = "";
+if (overallTotal >= 70) {
+    message = "😍 مبروك! لقد حصلت على درجة ممتازة وعلى أثرها ستحصل على شهادة إتمام البرنامج ";
+    document.getElementById("resultMessage").classList.add("balloon-animation"); // إضافة كلاس البالونات المتحركة
+} else if (overallTotal < 70) {
+    message = "😊 ستحصل على شهادة حضور البرنامج ";
+    document.getElementById("resultMessage").classList.remove("balloon-animation"); // إزالة كلاس البالونات المتحركة
+}
+
+
+
+var resultMessage = document.getElementById("resultMessage");
+if (resultMessage) {
+    resultMessage.innerHTML = message;
+    resultMessage.style.marginTop = "35px"; // إضافة الهامش العلوي
+resultMessage.style.marginBottom = "25px"; // إضافة الهامش السفلي
+    resultMessage.style.fontSize = "20px"; // جعل حجم النص أكبر
+    resultMessage.style.fontWeight = "bold"; // تطبيق الخط العريض
+} else {
+    var div = document.createElement("div");
+    div.id = "resultMessage";
+    div.innerHTML = message;
+    div.style.marginTop = "10px"; // إضافة الهامش العلوي
+    div.style.fontSize = "20px"; // جعل حجم النص أكبر
+    div.style.fontWeight = "bold"; // تطبيق الخط العريض
+    var table = document.getElementsByTagName("table")[0];
+    table.parentNode.insertBefore(div, table.nextSibling);
+}
+
+}
+
+// استدعاء الدالة عند حساب الدرجات
+calculateOverallTotal();
+
+
+
+
+
  </script>
+
 
 <footer>
   <p>جميع الحقوق محفوظة
