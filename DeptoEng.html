@@ -29,45 +29,31 @@ html, body {
   padding: 0;
 }
 
-.flex-container {
-  max-width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 0px;
 
-}
-
+/* تحديد العنصر الأب للرابط وتمدده على عرض الصفحة */
 .link-container {
-  display: flex;
-  align-items: center;
-  text-align: center; /* المحاذاة في المنتصف */
-  background-color: #000000;
-  padding: 5px;
-  box-sizing: border-box;
-  flex-basis: calc(33.33% - 0px);
+  width: 100%; /* جعل العرض يمتد على عرض الصفحة بالكامل */
+  background-color: #000;
 }
 
+/* تحديد الرابط داخل العنصر الأب وتحديد خلفية الرابط */
 .link-container a {
-  display: inline-block; /* عرض العناصر على شكل بلوك متجاور */
-  text-align: right; /* المحاذاة لليمين */
-  margin: 0 auto; /* إضافة هامش لكل من اليمين واليسار وتوسيط العنصر */
-  max-width: 33%; /* تحديد عرض العنصر بحيث لا يتجاوز النصف */
-
-  
+  display: flex;
   align-items: center;
-  justify-content: center; /* توسيط النص والصورة */
+  justify-content: center; /* توسيط العناصر عمودياً */
   text-decoration: none;
   color: #ffffff;
   font-size: 20px;
-  padding: 2px;
+  padding: 10px; /* زيادة الهامش لتوسيع المساحة */
   border: 1px solid #00000000;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
   box-sizing: border-box;
   flex-basis: 100%;
+  width: 400px; /* زيادة عرض الرابط */
+  margin: 0 auto; /* توسيط الرابط داخل العنصر الأب */
 }
+
 
 .link-container a:hover {
   background-color: #00ff5e7a;
@@ -76,15 +62,17 @@ html, body {
 }
 
 .link-container a img {
-  margin-right: 10px;
+  margin: 0 auto; /* محاذاة الصورة في المركز */
+  display: block; /* جعل الصورة تعرض كبلوك بدلاً من إنلاين */
   margin-left: 10px; /* وضع مسافة بين الصورة والنص */
   border-radius: 50%;
 }
 
 .link-container a span {
   font-weight: bold;
+  text-align: right; /* تحديد محاذاة النص إلى اليمين */
+  width: 100%; /* استخدام العرض بالكامل للنص */
 }
-
 
 footer {
     background-color: #000000;
