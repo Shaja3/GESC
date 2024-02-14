@@ -42,6 +42,7 @@ html, body {
 .link-container {
   display: flex;
   align-items: center;
+  text-align: center; /* المحاذاة في المنتصف */
   background-color: #000000;
   padding: 5px;
   box-sizing: border-box;
@@ -49,7 +50,12 @@ html, body {
 }
 
 .link-container a {
-  display: flex;
+  display: inline-block; /* عرض العناصر على شكل بلوك متجاور */
+  text-align: right; /* المحاذاة لليمين */
+  margin: 0 auto; /* إضافة هامش لكل من اليمين واليسار وتوسيط العنصر */
+  max-width: 33%; /* تحديد عرض العنصر بحيث لا يتجاوز النصف */
+
+  
   align-items: center;
   justify-content: center; /* توسيط النص والصورة */
   text-decoration: none;
@@ -288,21 +294,21 @@ th, td {
 
   <div class="link-container">
     <a href="DeptoEng.html" target="_blank">
-        <span>حساب النسبة الموزونة للقبول في برنامج اللغة</span>
+        <span>حساب النسبة الموزونة للقبول في البرنامج</span>
         <img src="icons8-link-48.png" alt="وصف الصورة" width="20" height="20" />
     </a>
   </div>
 
   <div class="link-container">
     <a href="smartclass.html" target="_blank">
-        <span>حساب أسعار طلب حلول تمارين سمارت كلاس والمشاريع</span>
+        <span>حساب أسعار حلول سمارت كلاس والمشاريع</span>
         <img src="icons8-link-48.png" alt="وصف الصورة" width="20" height="20" />
     </a>
   </div>
 
   <div class="link-container">
     <a href="أسعار حلول سمارت كلاس ومشاريع التحدث (عروض تقديمية).pdf" target="_blank">
-      <span>أسعار طلب حلول تمارين سمارت كلاس والمشاريع</span>
+      <span>أسعار حلول سمارت كلاس والمشاريع</span>
       <img src="google.svg" alt="وصف الصورة" width="20" height="20" />
     </a>
   </div>
@@ -316,7 +322,7 @@ th, td {
 
   <div class="link-container">
     <a href="https://t.me/+Yyrmw5KeX8Y1Yjlk" target="_blank">
-      <span>General English SC مجموعة</span>
+      <span>Telegram للإنضمام إلى مجموعتنا على</span>
       <img src="icons8-telegram.svg" alt="وصف الصورة" width="20" height="20" />
     </a>
   </div>
