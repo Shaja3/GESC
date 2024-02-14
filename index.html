@@ -39,34 +39,23 @@ html, body {
 
 }
 
-.link-container {
+.link-container a {
   display: flex;
   align-items: center;
-  text-align: center; /* المحاذاة في المنتصف */
-  background-color: #000000;
-  padding: 5px;
-  box-sizing: border-box;
-  flex-basis: calc(33.33% - 0px);
-}
-
-.link-container a {
-  display: inline-block; /* عرض العناصر على شكل بلوك متجاور */
-  text-align: right; /* المحاذاة لليمين */
-  max-width: 90%; /* تحديد عرض العنصر بحيث لا يتجاوز النصف */
-
-
-  align-items: center;
-  justify-content: center; /* توسيط النص والصورة */
+  justify-content: center; /* توسيط العناصر عمودياً */
   text-decoration: none;
   color: #ffffff;
   font-size: 20px;
-  padding: 2px;
+  padding: 10px; /* زيادة الهامش لتوسيع المساحة */
   border: 1px solid #00000000;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
   box-sizing: border-box;
   flex-basis: 100%;
+  width: 400px; /* زيادة عرض الرابط */
+  margin: 0 auto; /* توسيط الرابط داخل العنصر الأب */
 }
+
 
 .link-container a:hover {
   background-color: #00ff5e7a;
@@ -75,14 +64,20 @@ html, body {
 }
 
 .link-container a img {
-  margin-right: 10px;
-  margin-left: 10px; /* وضع مسافة بين الصورة والنص */
+  margin-right: auto; /* محاذاة الصورة إلى اليمين */
+  margin-left: auto; /* محاذاة الصورة إلى اليسار */
   border-radius: 50%;
 }
 
 .link-container a span {
   font-weight: bold;
+  margin-right: auto; /* محاذاة الصورة إلى اليمين */
+  margin-left: auto; /* محاذاة الصورة إلى اليسار */
+    width: 100%; /* استخدام العرض بالكامل للنص */
 }
+
+
+
 
 
 footer {
